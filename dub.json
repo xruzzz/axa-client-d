@@ -1,0 +1,50 @@
+{
+	"name" : "axa-client-d",
+	"description" : "A minimal D bundle.",
+	"homepage": "https://axa.su",
+	"license": "GPL-2.0",
+	"targetType": "executable",
+	"targetPath": "bin",
+	"dependencies" : {
+		"dlangui": "~>0.4.93",
+		"toml-d": ">=0.3.0",
+		"vibe-d": ">=0.7.21-beta.4",
+		"ax-static-d": {
+				"version": "0.0.1",
+				"path": "../ax-static-d/"
+			},
+		"axa-health-save-d": {
+				"version": "0.0.1",
+				"path": "../axa-health-save-d/"
+			}
+	},
+	"configurations": [
+		{
+			"name": "MySQL",
+			"versions": ["USE_MYSQL"],
+			"subConfigurations":
+			{
+				"hibernated": "MySQL"
+			}
+		},
+		{
+			"name": "SQLite",
+			"versions": ["USE_SQLITE"],
+			"libs-posix": ["sqlite3"],
+			"libs-windows": ["sqlite3"],
+			"subConfigurations":
+			{
+				"hibernated": "SQLite"
+			}
+		}
+	],
+	"buildTypes": {
+		"debug": {
+			"buildOptions": ["debugMode", "debugInfo", "optimize"]
+		},
+		"release": {
+			"buildOptions": ["releaseMode", "optimize"]
+		}
+	},
+	"versions": ["VibeCustomMain", "USE_MYSQL"]
+}
